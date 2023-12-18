@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Main from "./components/main";
+import Menu from "./components/menu";
+import { DARK, LIGHT } from "./constants/theme";
+
+export const ThemeProvider = React.createContext();
+
+const themes = {
+  [LIGHT]: { background: "#fff", color: "#000" },
+  [DARK]: { background: "#171717", color: "#fff" },
+};
 
 function App() {
+  const [theme, setTheme] = useState(DARK);
+  const toggleTheme = () => {
+    const newTheme = theme === LIGHT ? DARK : LIGHT;
+    setTheme(newTheme);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider.Provider value={{ toggleTheme }}>
+      <div
+        className="container h-screen"
+        style={{
+          backgroundColor: themes[theme].background,
+          color: themes[theme].color,
+        }}
+      >
+        <Menu />
+        <Main />
+      </div>
+    </ThemeProvider.Provider>
   );
 }
 
