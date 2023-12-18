@@ -20,7 +20,7 @@ function App() {
   return (
     <ThemeProvider.Provider value={{ toggleTheme }}>
       <div
-        className="container h-screen"
+        className="container min-h-screen "
         style={{
           backgroundColor: themes[theme].background,
           color: themes[theme].color,
