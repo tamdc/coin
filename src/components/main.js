@@ -23,7 +23,7 @@ const data = [
 const Main = () => {
   return (
     <div className="pt-4">
-      <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
+      <h1 className="text-3xl font-bold text-center mb-4">Academy app</h1>
       <List data={data} />
     </div>
   );
