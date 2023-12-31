@@ -3,6 +3,7 @@ import "./App.css";
 import Main from "./components/main";
 import Menu from "./components/menu";
 import { DARK, LIGHT } from "./constants/theme";
+import { auth } from "./contexts/auth";
 
 export const ThemeProvider = React.createContext();
 
@@ -17,6 +18,10 @@ function App() {
     const newTheme = theme === LIGHT ? DARK : LIGHT;
     setTheme(newTheme);
   };
+
+  React.useEffect(() => {
+    auth();
+  }, []);
   return (
     <ThemeProvider.Provider value={{ toggleTheme }}>
       <div
